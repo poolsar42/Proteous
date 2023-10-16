@@ -42,7 +42,7 @@ function App() {
                 }))}
                 onClick={async (id) => {
                   const predictions = await axios.post(
-                    "https://proteous-606b94fbd95c.herokuapp.com//predict",
+                    "https://proteous-606b94fbd95c.herokuapp.com/predict",
                     {
                       sequence: entries[id].protein_sequence,
                     }
