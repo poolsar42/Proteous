@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     // Get all entries
     axios
-      .get("https://proteous-9352268979b2.herokuapp.com/all-entries")
+      .get("https://proteous-9352268979b2.herokuapp.com")
       //https://proteous-9352268979b2.herokuapp.com/all-entries")
       .then((response) => {
         //http://localhost:5000/all-entries
