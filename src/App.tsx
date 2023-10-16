@@ -1,30 +1,25 @@
 import logo from "./images/Proteous.png";
-import React, { useState, useEffect } from "react";
+import Table from "./components/Table";
 
 function App() {
   return (
     <div className="flex items-center justify-center flex-col w-screen h-screen">
       <p>Proteous</p>
       <div
-        className="flex flex-col justify-center mt-5 border border-black rounded-lg text-center
+        className="flex flex-col items-center mt-5 border border-black rounded-lg text-center
       w-[75%] h-[85%] min-h-fit"
       >
-        <div
-          id="litemol"
-          style={{
-            width: "640px",
-            height: "480px",
-            marginTop: "200px",
-            position: "relative",
-          }}
-        ></div>
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-col items-start">
+        <div className="flex flex-row justify-between w-full px-5">
+          <div className="flex flex-col items-start space-y-4">
             <div>
               <div className="flex flex-col items-start">
                 <p>Project</p>
                 <input className="border border-black rounded-lg text-center" />
               </div>
+            </div>
+            <div className="flex flex-col items-start">
+              <p>Database Entries</p>
+              <Table />
             </div>
           </div>
           <div>
@@ -34,13 +29,14 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="w-full h-[85%] border border-black h-max rounded-lg">
+
+        {/* <div className="w-full h-screen border border-black h-max rounded-lg">
           <iframe
             src="https://www.litemol.org/Viewer/"
             title="UniProt structure"
             className="w-full h-full"
           />
-        </div>
+        </div> */}
       </div>
 
       <div id="footer" className="flex items-center justify-center">
