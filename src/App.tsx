@@ -5,25 +5,17 @@ import axios from "axios";
 
 function App() {
   const [entries, setEntries] = useState([]);
+  const [id, setId] = useState(0);
+  const [prediction, setPrediction] = useState([]);
   const [substring, setSubstring] = useState("");
 
   useEffect(() => {
-    // Get all entries
     axios.get("http://127.0.0.1:8000/all-entries").then((response) => {
-      setEntries(response.data);
+      setEntries(JSON.parse(response.data));
     });
   }, []);
 
-  console.log(entries);
-
-  //   const handleSubstringSearch = () => {
-  //     // Get entries by substring
-  //     axios
-  //       .get(`http://localhost:5000/substring-search?substring=${substring}`)
-  //       .then((response) => {
-  //         setEntries(response.data);
-  //       });
-  //   };
+  console.log({ prediction });
 
   return (
     <div className="flex items-center justify-center flex-col w-screen h-screen">
@@ -44,15 +36,31 @@ function App() {
               <p>Database Entries</p>
               <Table
                 metric={false}
-                entries={entries.map((entry) =>
-                  entry.protein_sequence.slice(0, 18)
-                )}
+                entries={entries?.map((entry, id) => ({
+                  sequence: entry.protein_sequence.slice(0, 18),
+                  id,
+                }))}
+                onClick={async (id) => {
+                  const predictions = await axios.post(
+                    "http://127.0.0.1:8000/predict",
+                    {
+                      sequence: entries[id].protein_sequence,
+                    }
+                  );
+
+                  setPrediction(predictions.data.tm);
+                }}
               />
             </div>
             <div className="flex flex-col items-start">
-              z§
-              <p>Scored Variants</p>
-              <Table metric={true} entries={[]} />
+              <p>TM</p>
+              {/* <Table metric={true} entries={[]} /> */}
+              <div
+                className="border border-black m-4 p-4 h-12 w-max
+               rounded-lg truncate flex "
+              >
+                {prediction}
+              </div>
             </div>
           </div>
           <div>

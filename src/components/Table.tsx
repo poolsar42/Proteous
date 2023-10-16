@@ -1,14 +1,16 @@
 const Table = ({
   metric,
   entries,
+  onClick,
 }: {
   metric: boolean;
   entries:
-    | string[]
     | {
         sequence: string;
-        metric: number;
+        metric?: number;
+        id?: number;
       }[];
+  onClick?: (id: number) => void;
 }) => {
   return (
     <div className="border rounded-lg border-black p-2 text-gray-700">
@@ -29,8 +31,9 @@ const Table = ({
                       ? ""
                       : "hover:bg-gray-100 hover:text-gray-900 cursor-pointer rounded-lg"
                   }`}
+                  onClick={(id) => onClick(entry.id)}
                 >
-                  {metric ? entry.sequence : entry}
+                  {entry.sequence}
                 </tr>
               );
             })}
