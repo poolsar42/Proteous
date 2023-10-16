@@ -10,10 +10,8 @@ function App() {
   useEffect(() => {
     // Get all entries
     axios
-      .get("https://proteous-9352268979b2.herokuapp.com")
-      //https://proteous-9352268979b2.herokuapp.com/all-entries")
+      .get("https://proteous-606b94fbd95c.herokuapp.com/all-entries")
       .then((response) => {
-        //http://localhost:5000/all-entries
         setEntries(response.data);
       });
   }, []);
@@ -60,14 +58,6 @@ function App() {
             </div>
           </div>
         </div>
-
-        {/* <div className="w-full h-screen border border-black h-max rounded-lg">
-          <iframe
-            src="https://www.litemol.org/Viewer/"
-            title="UniProt structure"
-            className="w-full h-full"
-          />
-        </div> */}
       </div>
 
       <div id="footer" className="flex items-center justify-center">
