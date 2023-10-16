@@ -8,18 +8,18 @@ const Table = () => {
             <th>Metric</th>
           </tr>
         </thead>
-        <tbody>
-          <td>
-            <tr>FRLERKGDGVLVGMIKDA</tr>
-            <tr>GDDPDVTHGAEIQAFVRF</tr>
-            <tr>FRLERKGDGVLVGMIKDA</tr>
-            <tr>GLGVPVGEPAINPVPRRM</tr>
+        <tbody className="text-center">
+          <td className="text-center">
+            <tr className="text-center">FRLERKGDGVLVGMIKDA</tr>
+            <tr className="text-center">GDDPDVTHGAEIQAFVRF</tr>
+            <tr className="text-center">FRLERKGDGVLVGMIKDA</tr>
+            <tr className="text-center">GLGVPVGEPAINPVPRRM</tr>
           </td>
-          <td>
-            <tr>0.8</tr>
-            <tr>0.7</tr>
-            <tr>0.3</tr>
-            <tr>0.1</tr>
+          <td className="text-center">
+            <tr className="text-center">0.8</tr>
+            <tr className="text-center">0.7</tr>
+            <tr className="text-center">0.3</tr>
+            <tr className="text-center">0.1</tr>
           </td>
         </tbody>
       </table>
