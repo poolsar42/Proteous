@@ -10,7 +10,7 @@ function App() {
   const [substring, setSubstring] = useState("");
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/all-entries").then((response) => {
+    axios.get("https://proteous-606b94fbd95c.herokuapp.com/all-entries").then((response) => {
       setEntries(JSON.parse(response.data));
     });
   }, []);
@@ -42,7 +42,7 @@ function App() {
                 }))}
                 onClick={async (id) => {
                   const predictions = await axios.post(
-                    "http://127.0.0.1:8000/predict",
+                    "https://proteous-606b94fbd95c.herokuapp.com//predict",
                     {
                       sequence: entries[id].protein_sequence,
                     }
