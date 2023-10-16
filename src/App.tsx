@@ -1,7 +1,34 @@
 import logo from "./images/Proteous.png";
 import Table from "./components/Table";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [entries, setEntries] = useState([]);
+  const [substring, setSubstring] = useState("");
+
+  useEffect(() => {
+    // Get all entries
+    axios
+      .get("https://proteous-9352268979b2.herokuapp.com/all-entries")
+      //https://proteous-9352268979b2.herokuapp.com/all-entries")
+      .then((response) => {
+        //http://localhost:5000/all-entries
+        setEntries(response.data);
+      });
+  }, []);
+
+  console.log({ entries });
+
+  //   const handleSubstringSearch = () => {
+  //     // Get entries by substring
+  //     axios
+  //       .get(`http://localhost:5000/substring-search?substring=${substring}`)
+  //       .then((response) => {
+  //         setEntries(response.data);
+  //       });
+  //   };
+
   return (
     <div className="flex items-center justify-center flex-col w-screen h-screen">
       <p>Proteous</p>
