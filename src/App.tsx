@@ -21,6 +21,10 @@ function App() {
               <p>Database Entries</p>
               <Table />
             </div>
+            <div className="flex flex-col items-start">
+              <p>Scored Variants</p>
+              <Table />
+            </div>
           </div>
           <div>
             <div className="flex flex-col items-start h-[15%]">
