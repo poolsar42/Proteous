@@ -9,14 +9,12 @@ function App() {
 
   useEffect(() => {
     // Get all entries
-    axios
-      .get("https://proteous-606b94fbd95c.herokuapp.com/all-entries")
-      .then((response) => {
-        setEntries(response.data);
-      });
+    axios.get("http://127.0.0.1:8000/all-entries").then((response) => {
+      setEntries(response.data);
+    });
   }, []);
 
-  console.log({ entries });
+  console.log(entries);
 
   //   const handleSubstringSearch = () => {
   //     // Get entries by substring
@@ -44,11 +42,17 @@ function App() {
             </div>
             <div className="flex flex-col items-start">
               <p>Database Entries</p>
-              <Table />
+              <Table
+                metric={false}
+                entries={entries.map((entry) =>
+                  entry.protein_sequence.slice(0, 18)
+                )}
+              />
             </div>
             <div className="flex flex-col items-start">
+              z§
               <p>Scored Variants</p>
-              <Table />
+              <Table metric={true} entries={[]} />
             </div>
           </div>
           <div>

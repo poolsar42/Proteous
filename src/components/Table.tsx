@@ -1,26 +1,47 @@
-const Table = () => {
+const Table = ({
+  metric,
+  entries,
+}: {
+  metric: boolean;
+  entries:
+    | string[]
+    | {
+        sequence: string;
+        metric: number;
+      }[];
+}) => {
   return (
-    <div className="border rounded-lg border-black p-2">
+    <div className="border rounded-lg border-black p-2 text-gray-700">
       <table className="table-auto">
         <thead>
           <tr>
             <th>Protein Sequence</th>
-            <th>Metric</th>
+            {metric && <th>Metric</th>}
           </tr>
         </thead>
         <tbody className="text-center">
           <td className="text-center">
-            <tr className="text-center">FRLERKGDGVLVGMIKDA</tr>
-            <tr className="text-center">GDDPDVTHGAEIQAFVRF</tr>
-            <tr className="text-center">FRLERKGDGVLVGMIKDA</tr>
-            <tr className="text-center">GLGVPVGEPAINPVPRRM</tr>
+            {entries.map((entry) => {
+              return (
+                <tr
+                  className={`text-center w-full px-2 ${
+                    metric
+                      ? ""
+                      : "hover:bg-gray-100 hover:text-gray-900 cursor-pointer rounded-lg"
+                  }`}
+                >
+                  {metric ? entry.sequence : entry}
+                </tr>
+              );
+            })}
           </td>
-          <td className="text-center">
-            <tr className="text-center">0.8</tr>
-            <tr className="text-center">0.7</tr>
-            <tr className="text-center">0.3</tr>
-            <tr className="text-center">0.1</tr>
-          </td>
+          {metric && (
+            <td className="flex flex-col items-center text-center w-full">
+              {entries.map((entry) => {
+                return <tr className="text-center w-full">{entry.metric}</tr>;
+              })}
+            </td>
+          )}
         </tbody>
       </table>
     </div>
