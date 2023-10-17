@@ -8,14 +8,16 @@ function App() {
   const [id, setId] = useState(0);
   const [prediction, setPrediction] = useState([]);
   const [substring, setSubstring] = useState("");
+  const [tm, setTm] = useState("");
 
   useEffect(() => {
-    axios.get("https://proteous-606b94fbd95c.herokuapp.com/all-entries").then((response) => {
-      setEntries(JSON.parse(response.data));
-    });
+    axios
+      .get("https://proteous-606b94fbd95c.herokuapp.com/all-entries")
+      .then((response) => {
+        //http://localhost:8000/all-entries
+        setEntries(JSON.parse(response.data));
+      });
   }, []);
-
-  console.log({ prediction });
 
   return (
     <div className="flex items-center justify-center flex-col w-screen h-screen">
@@ -42,26 +44,49 @@ function App() {
                 }))}
                 onClick={async (id) => {
                   const predictions = await axios.post(
-                    "https://proteous-606b94fbd95c.herokuapp.com/predict",
+                    "https://proteous-606b94fbd95c.herokuapp.com/get_best_variants",
+                    //"http://localhost:8000/get_best_variants",
                     {
                       sequence: entries[id].protein_sequence,
                     }
                   );
-
-                  setPrediction(predictions.data.tm);
+                  setPrediction(predictions.data.sequences);
                 }}
               />
             </div>
-            <div className="flex flex-col items-start">
-              <p>TM</p>
-              {/* <Table metric={true} entries={[]} /> */}
-              <div
-                className="border border-black m-4 p-4 h-12 w-max
+            {prediction.length ? (
+              <div className="flex flex-col items-start">
+                <p>Best Variants</p>
+                <Table
+                  metric={false}
+                  entries={prediction?.map((entry, id) => ({
+                    sequence: entry.slice(0, 18),
+                    id,
+                  }))}
+                  onClick={async (id) => {
+                    const predictions = await axios.post(
+                      "https://proteous-606b94fbd95c.herokuapp.com/predict",
+                      //"http://localhost:8000/predict"
+                      {
+                        sequence: prediction[id],
+                      }
+                    );
+                    setTm(predictions.data.tm);
+                  }}
+                />
+                {tm && (
+                  <div className="flex flex-col items-start">
+                    <p>Predicted TM</p>
+                    <div
+                      className="border border-black my-2 p-4 h-12 w-max
                rounded-lg truncate flex "
-              >
-                {prediction}
+                    >
+                      {tm}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
+            ) : null}
           </div>
           <div>
             <div className="flex flex-col items-start h-[15%]">
