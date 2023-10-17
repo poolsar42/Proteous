@@ -63,7 +63,7 @@ function App() {
     <div className="flex items-center justify-center flex-col w-screen min-h-screen my-5">
       <Toaster />
       <div
-        className="flex flex-col items-center mt-5 border border-black rounded-lg text-center
+        className="flex flex-col items-center mt-5 border border-gray-300 text-center
       w-[75%] min-h-fit min-h-fit"
       >
         <div className="flex flex-row justify-between w-full px-5 space-x-4 py-4">

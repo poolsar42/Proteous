@@ -35,7 +35,7 @@ const Table = ({
             })}
           </td>
           {metric ? (
-            <td className="flex flex-col items-center text-center w-full border border-black">
+            <td className="flex flex-col items-center text-center w-full border border-gray-300">
               {entries.map((entry) => {
                 return (
                   <tr className="text-center w-full">
