@@ -52,8 +52,8 @@ function App() {
 
   useEffect(() => {
     axios
-      // .get("https://proteous-606b94fbd95c.herokuapp.com/all-entries")
-      .get("http://localhost:8000/all-entries")
+      .get("https://proteous-606b94fbd95c.herokuapp.com/all-entries")
+      // .get("http://localhost:8000/all-entries")
       .then((response) => {
         setEntries(JSON.parse(response.data));
       });
@@ -89,8 +89,8 @@ function App() {
                 }))}
                 onClick={async (id) => {
                   const predictions = await axios.post(
-                    // "https://proteous-606b94fbd95c.herokuapp.com/get_best_variants",
-                    "http://localhost:8000/get_best_variants",
+                    "https://proteous-606b94fbd95c.herokuapp.com/get_best_variants",
+                    // "http://localhost:8000/get_best_variants",
                     {
                       sequence: entries[id].protein_sequence,
                     }
